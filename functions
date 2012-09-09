@@ -1,0 +1,84 @@
+#!/bin/zsh
+
+function mach() {
+    echo -e "\nMachine information:" ; uname -a
+    echo -e "\nUsers logged on:" ; w -h
+    echo -e "\nCurrent date :" ; date
+    echo -e "\nMachine status :" ; uptime
+    echo -e "\nMemory status :" ; free
+    echo -e "\nFilesystem status :"; df -h
+}
+
+function mkcd() { mkdir "$@" && cd "$@"; }
+function cls() { cd "$@" && ls; }
+function gq() { geeqie "$@" 2>/dev/null & }
+
+function ali() {
+  alias | sed 's/-=/-- -=/' | sed 's/^/alias /g' > $HOME/Dropbox/config/bash/aliases
+}
+
+function golog() {
+  cd $(clog -df)
+}
+
+function fswap() {
+	tmpfile=$(mktemp $(dirname "$1")/XXXXXX)
+	mv "$1" "$tmpfile"
+	mv "$2" "$1"
+	mv "$tmpfile" "$2"
+}
+
+function pwo() {
+	log "$1" :bca
+	log -T "$1" :bca
+
+	if [ -z "$2" ]
+	then
+		log -i :pwo
+		log -Ti :pwo
+	else
+		log "$2" :pwo
+		log -T "$2" :pwo
+	fi
+}
+
+function cardiopwo() {
+	log "$1" :bca
+	log -T "$1" :bca
+
+	if [ -z "$2" ]
+	then
+		log -i :cardiopwo
+		log -Ti :cardiopwo
+	else
+		log "$2" :cardiopwo
+		log -T "$2" :cardiopwo
+	fi
+}
+
+function bca() {
+	if [ -z "$1" ]; then
+		log :bca
+		log -T :bca
+	else
+		log "$1" :bca
+		log -T "$1" :bca
+	fi
+}
+
+function tempalias() {
+	alias_name=$1
+	shift
+	alias $alias_name="$@ && unalias $alias_name"
+}
+
+function prewo() {
+	if [ -z "$1" ] ; then
+		log :prewo
+		log -T :prewo
+	else
+		log "$1" :prewo
+		log -T "$1" :prewo
+	fi
+	log -Tb
+}

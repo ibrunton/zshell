@@ -1,0 +1,27 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename '/home/ian/.config/zsh/.zshrc'
+
+autoload -Uz compinit promptinit colors
+colors
+compinit
+promptinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.local/share/zshhistfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt append_history hist_ignore_dups hist_ignore_all_dups hist_ignore_space hist_no_store
+setopt notify
+setopt auto_cd auto_pushd pushd_silent
+unsetopt beep flow_control
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+source ~/.config/bash/aliases
+source ~/.config/bash/DirB
+source ~/.config/zsh/functions
+
+# prompt:
+PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%n%B%{$fg[black]%}@%b%{$fg[blue]%}%m%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"

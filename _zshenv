@@ -1,0 +1,5 @@
+#!/bin/zsh
+ZDOTDIR=~/.config/zsh
+export EDITOR=vim
+export DIRB=~/.local/share/DirB
+
