@@ -1,5 +1,9 @@
 #!/bin/zsh
+# symlink this file in $HOME
+
 ZDOTDIR=~/.config/zsh
 export EDITOR=vim
 export DIRB=~/.local/share/DirB
+export PATH=$PATH:/home/ian/bin
+export LOCAL_PACKAGE_SOURCES=/home/ian/dl
 

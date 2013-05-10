@@ -1,24 +1,26 @@
 #!/bin/zsh
 
 function mach() {
-    echo -e "\nMachine information:" ; uname -a
-    echo -e "\nUsers logged on:" ; w -h
-    echo -e "\nCurrent date :" ; date
-    echo -e "\nMachine status :" ; uptime
-    echo -e "\nMemory status :" ; free
-    echo -e "\nFilesystem status :"; df -h
+	echo -e "\nMachine information:" ; uname -a
+	echo -e "\nUsers logged on:" ; w -h
+	echo -e "\nCurrent date :" ; date
+	echo -e "\nMachine status :" ; uptime
+	echo -e "\nMemory status :" ; free
+	echo -e "\nFilesystem status :"; df -h
 }
 
-function mkcd() { mkdir "$@" && cd "$@"; }
+function mkcd() { mkdir "$@" && cd "${argv[${#argv}]}"; } # allows -p option
 function cls() { cd "$@" && ls; }
 function gq() { geeqie "$@" 2>/dev/null & }
 
 function ali() {
-  alias | sed 's/-=/-- -=/' | sed 's/^/alias /g' > $HOME/Dropbox/config/bash/aliases
+	alias -rL > $HOME/Dropbox/config/bash/aliases
+	alias -gL > $HOME/Dropbox/config/zsh/alias_g
+	alias -sL > $HOME/Dropbox/config/zsh/alias_s
 }
 
 function golog() {
-  cd $(clog -df)
+	cd $(clog -df)
 }
 
 function fswap() {
@@ -82,3 +84,47 @@ function prewo() {
 	fi
 	log -Tb
 }
+
+function cprewo() {
+	if [ -z "$1" ] ; then
+		coffeen
+		coffeen -T
+		prewo
+	else
+		coffeen "$1"
+		coffeen -T "$1"
+		prewo "$1"
+	fi
+}
+
+function -() {
+	popd
+}
+
+#insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+#zle -N insert-sudo insert_sudo
+#bindkey "^[s" insert-sudo
+
+function conf() {
+	if [ -z "$1" ]
+	then
+		this=$(basename $(pwd))
+	else
+		this="$1"
+	fi
+	case $this in
+		conky)		vim ~/.config/conky/conkyrc ;;
+		zsh)		vim ~/.config/zsh/_zshrc ;;
+		xinit)		vim ~/.xinitrc ;;
+		xres*)		vim ~/.Xresources ;;
+		awesome)	vim ~/.config/awesome/rc.lua ;;
+		dwm*)		vim ~/docs/programming/abs/community/dwm-6.0/config.h ;;
+		herbst*)	vim ~/.config/herbstluftwm/autostart ;;
+		i3)		vim ~/.config/i3/config ;;
+		openbox)	vim ~/.config/openbox/rc.xml ;;
+		.xmonad|xmonad)	vim ~/.xmonad/xmonad.hs ;;
+		*)		echo "Unknown config file" ;;
+	esac
+
+}
+

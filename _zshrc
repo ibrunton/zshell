@@ -12,16 +12,34 @@ promptinit
 HISTFILE=~/.local/share/zshhistfile
 HISTSIZE=1000
 SAVEHIST=1000
+
+# history options:
 setopt append_history hist_ignore_dups hist_ignore_all_dups hist_ignore_space hist_no_store
+# background jobs:
 setopt notify
+# changing directory:
 setopt auto_cd auto_pushd pushd_silent
+# globbing:
+setopt extended_glob
+# unset:
 unsetopt beep flow_control
+# keymap: emacs
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
+# make M-f and M-b stop at / in paths:
+export WORDCHARS=''
+
 source ~/.config/bash/aliases
+source ~/.config/zsh/alias_s
+source ~/.config/zsh/alias_g
 source ~/.config/bash/DirB
 source ~/.config/zsh/functions
 
 # prompt:
-PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%n%B%{$fg[black]%}@%b%{$fg[blue]%}%m%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"
+#PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%n%B%{$fg[black]%}@%b%{$fg[blue]%}%m%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"
+# blue version:
+#PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}-%{$fg[blue]%}[%b%{$fg[blue]%}%h%B%{$fg[blue]%}]%{$fg[black]%}-%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"
+# green version:
+PROMPT="%B%{$fg[black]%}::%{$fg[cyan]%}(%b%{$fg[cyan]%}%D%B%{$fg[black]%}.%b%{$fg[cyan]%}%T%B)%{$fg[black]%}-%{$fg[cyan]%}[%b%{$fg[cyan]%}%h%B%{$fg[cyan]%}]%{$fg[black]%}-%{$fg[cyan]%}(%b%{$fg[yellow]%}%2~%B%{$fg[cyan]%})%{$fg[black]%}>%b %{$reset_color%}"
+#PROMPT="%B%{$fg[black]%}::%{$fg[red]%}(%b%{$fg[red]%}%D%B%{$fg[black]%}.%b%{$fg[red]%}%T%B)%{$fg[black]%}┌%{$fg[red]%}(%b%{$fg[yellow]%}%2~%B%{$fg[red]%})>%b %{$reset_color%}"
