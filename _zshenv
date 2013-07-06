@@ -4,6 +4,6 @@
 ZDOTDIR=~/.config/zsh
 export EDITOR=vim
 export DIRB=~/.local/share/DirB
-export PATH=$PATH:/home/ian/bin
+export PATH=$PATH:/home/ian/bin:/home/ian/scripts
 export LOCAL_PACKAGE_SOURCES=/home/ian/dl
 

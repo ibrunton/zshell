@@ -5,7 +5,7 @@ zstyle :compinstall filename '/home/ian/.config/zsh/.zshrc'
 
 autoload -Uz compinit promptinit colors
 colors
-compinit
+compinit -d ~/.local/share/zcompdump
 promptinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
@@ -36,10 +36,17 @@ source ~/.config/zsh/alias_g
 source ~/.config/bash/DirB
 source ~/.config/zsh/functions
 
+# set terminal window title:
+case $TERM in
+	xterm*|rxvt*)
+		precmd () {print -Pn "e]0;%n@%m: %~a"}
+		;;
+esac
 # prompt:
 #PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%n%B%{$fg[black]%}@%b%{$fg[blue]%}%m%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}┌%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"
 # blue version:
 #PROMPT="%B%{$fg[black]%}::%{$fg[blue]%}(%b%{$fg[blue]%}%D%B%{$fg[black]%}.%b%{$fg[blue]%}%T%B)%{$fg[black]%}-%{$fg[blue]%}[%b%{$fg[blue]%}%h%B%{$fg[blue]%}]%{$fg[black]%}-%{$fg[blue]%}(%b%{$fg[cyan]%}%2~%B%{$fg[blue]%})%{$fg[black]%}>%b %{$reset_color%}"
 # green version:
-PROMPT="%B%{$fg[black]%}::%{$fg[cyan]%}(%b%{$fg[cyan]%}%D%B%{$fg[black]%}.%b%{$fg[cyan]%}%T%B)%{$fg[black]%}-%{$fg[cyan]%}[%b%{$fg[cyan]%}%h%B%{$fg[cyan]%}]%{$fg[black]%}-%{$fg[cyan]%}(%b%{$fg[yellow]%}%2~%B%{$fg[cyan]%})%{$fg[black]%}>%b %{$reset_color%}"
+PROMPT="%(!.%B%{$fg[red]%}root@%m%b.%B%{$fg[black]%}::%{$fg[cyan]%}(%b%{$fg[cyan]%}%D%B%{$fg[black]%}.%b%{$fg[cyan]%}%T%B)%{$fg[black]%}-%{$fg[cyan]%}[%b%{$fg[cyan]%}%h%B%{$fg[cyan]%}])%{$fg[black]%}-%{$fg[cyan]%}(%b%{$fg[yellow]%}%2~%B%{$fg[cyan]%})%{$fg[black]%}>%b %{$reset_color%}"
 #PROMPT="%B%{$fg[black]%}::%{$fg[red]%}(%b%{$fg[red]%}%D%B%{$fg[black]%}.%b%{$fg[red]%}%T%B)%{$fg[black]%}┌%{$fg[red]%}(%b%{$fg[yellow]%}%2~%B%{$fg[red]%})>%b %{$reset_color%}"
+#PROMTP="%(!.%B{$fg[red]%}root@%m%b%.USER)"

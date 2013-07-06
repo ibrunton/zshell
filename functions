@@ -115,6 +115,7 @@ function conf() {
 	case $this in
 		conky)		vim ~/.config/conky/conkyrc ;;
 		zsh)		vim ~/.config/zsh/_zshrc ;;
+		func)		vim ~/.config/zsh/functions ;;
 		xinit)		vim ~/.xinitrc ;;
 		xres*)		vim ~/.Xresources ;;
 		awesome)	vim ~/.config/awesome/rc.lua ;;
@@ -123,7 +124,27 @@ function conf() {
 		i3)		vim ~/.config/i3/config ;;
 		openbox)	vim ~/.config/openbox/rc.xml ;;
 		.xmonad|xmonad)	vim ~/.xmonad/xmonad.hs ;;
-		*)		echo "Unknown config file" ;;
+		xmobar)		vim ~/.xmobarrc ;;
+		tmux)		vim ~/.tmux.conf ;;
+		colo*)		vim ~/Dropbox/config/dots/colours.hybrid ;;
+		mutti)		vim ~/Dropbox/mutt/iandbrunton/muttrc ;;
+		muttw)		vim ~/Dropbox/mutt/wolfshift/muttrc ;;
+		mailcap)	vim ~/Dropbox/mutt/mailcap ;;
+		pent*)		vim ~/.pentadactylrc ;;
+		log|llg)	vim ~/.config/logrc ;;
+		vim)		vim ~/.vimrc ;;
+		netrc)		vim ~/.netrc ;;
+		*)		
+			if [ -e "config" ] ;
+			then
+				vim "config"
+			elif [ -e "rc.*" ] ;
+			then
+				vim "rc.*"
+			else
+				echo "Unknown config file"
+			fi
+			;;
 	esac
 
 }
